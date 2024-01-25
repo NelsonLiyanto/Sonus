@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Profiles.belongsTo(models.Users,{foreignKey:'UserId'})
     }
   }
   Profiles.init({
@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     pfpUrl: DataTypes.TEXT,
     PlaylistId: DataTypes.INTEGER,
-    PlaylistCover: DataTypes.TEXT,
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
