@@ -18,6 +18,9 @@ module.exports = {
       coverUrl: {
         type: Sequelize.TEXT
       },
+      ProfileId:{
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const ControllerLanding = require('../controllers/controllerUser')
 const ControllerProfile = require('../controllers/controllerProfile')
-const e = require('express')
+const ControllerPlaylists = require('../controllers/controllerPlaylist')
+const ControllerSong = require('../controllers/controllerSong')
 
 router.get('/',(req,res)=>{
     res.redirect('/sonus')
@@ -24,23 +25,24 @@ router.use((req,res,next)=>{
 })
 
 router.get('/sonus/profile',ControllerProfile.renderProfile) //Profile page
-router.get('/sonus/profile/setup') //Profile setup for a new user
-router.post('/sonus/profile/setup') //Post profile data
-router.get('/sonus/profile/edit') //Edit profile data
-router.post('/sonus/profile/edit') //Edit profile data
-router.get('/sonus/profile/playlist') //User's personal playlist
-router.get('/sonus/profile/playlist/add')   //If playlist exists, only allow edit/delete
-router.get('/sonus/profile/playlist/edit')  //Disable edit & delete if playlist does not exist
-router.get('/sonus/profile/playlist/delete')
+router.get('/sonus/profile/setup',ControllerProfile.renderSetup) //Profile setup for a new user
+router.post('/sonus/profile/setup',ControllerProfile.saveSetup) //Post profile data
+router.get('/sonus/profile/edit',ControllerProfile.renderEdit) //Edit profile data
+router.post('/sonus/profile/edit',ControllerProfile.editProfile) //Edit profile data
+router.get('/sonus/profile/playlist/add',ControllerPlaylists.renderAdd)   //If playlist exists, only allow edit/delete
+router.post('/sonus/profile/playlist/add',ControllerPlaylists.addPlaylist)   
+router.get('/sonus/profile/playlist/edit',ControllerPlaylists.renderEdit)  //Disable edit & delete if playlist does not exist
+router.post('/sonus/profile/playlist/edit',ControllerPlaylists.editPlaylist)  
+router.get('/sonus/profile/playlist/delete',ControllerPlaylists.deletePlaylist)
 
 router.get('/sonus/others') //Other users' profiles
 router.get('/sonus/others/:sonusId')    //View one spesific profile
 
-router.get('/playlists') //Browseplaylists
-router.get('/playlists/:playlistId') //Browseplaylists
+router.get('/sonus/playlists', ControllerPlaylists.renderPlaylists) //Browseplaylists
 
-router.get('/songs')    //Browse songs
-router.get('/songs/:songId')    //View specific song
+router.get('/sonus/songs', ControllerSong.renderSong)    //Browse songs
+router.get('/sonus/songs/file/:filename',ControllerSong.sendFile)
+router.get('/sonus/songs/:songId',ControllerSong.renderPlayer)    //Play specific song
 
-
+router.get('/sonus/player')
 module.exports = router

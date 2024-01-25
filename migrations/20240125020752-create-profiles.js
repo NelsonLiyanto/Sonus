@@ -18,9 +18,6 @@ module.exports = {
       pfpUrl: {
         type: Sequelize.TEXT
       },
-      PlaylistId: {
-        type: Sequelize.INTEGER
-      },
       PlaylistCover: {
         type: Sequelize.TEXT
       },

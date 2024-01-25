@@ -11,14 +11,42 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Profiles.belongsTo(models.Users,{foreignKey:'UserId'})
+      Profiles.hasOne(models.Playlists,{foreignKey:'ProfileId'})
     }
   }
   Profiles.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    pfpUrl: DataTypes.TEXT,
-    PlaylistId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          msg:'Name must not be empty!'
+        }
+      }
+    },
+    description: {
+      type: DataTypes.TEXT,
+      validate:{
+        notEmpty:{
+          msg:'Description must not be empty!'
+        }
+      }
+    },
+    pfpUrl: {
+      type: DataTypes.TEXT,
+      validate:{
+        notEmpty:{
+          msg:'Profile picture must not be empty!'
+        }
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      validate:{
+        notEmpty:{
+          msg:'UserId must not be empty!'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Profiles',

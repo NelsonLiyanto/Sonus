@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(Users.password,salt)
         Users.password = hash
+        Users.role = 'user'
       }
     }
   });

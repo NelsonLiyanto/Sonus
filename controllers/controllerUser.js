@@ -4,12 +4,8 @@ let bcrypt = require('bcryptjs')
 class ControllerLanding{
     static async renderLanding(req,res){
         try {
-            // localStorage.setItem('currentSession','valid')
-            // console.log(localStorage.currentSession);
-            // if(typeof(Storage)!==undefined) res.send('Storage valid')
-            // else res.send('Storage invalid')
+            if(req.session.userId) delete req.session.userId
             res.render('landing')      
-
         } catch (error) {
             console.log(error);
             res.send(error)
@@ -23,7 +19,6 @@ class ControllerLanding{
     static async registerUser(req,res){
         try {
             let newUser = req.body
-            newUser.role = 'user'
             await Users.create(newUser)
             res.redirect('/sonus')
         } catch (error) {
