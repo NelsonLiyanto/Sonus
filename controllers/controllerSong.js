@@ -1,11 +1,20 @@
 const {Users,Profiles,Songs,PlaylistContents,Playlists} = require('../models/index')
 const {Howl, Howler} = require('howler');
+const {Op} = require('sequelize')
 const fs = require('fs').promises
 const time = require('../helpers/time')
 class ControllerSong{
     static async renderSong(req,res){
         try {
-            let songs = await Songs.findAll()
+            let search = ""
+            if(req.query.search) search = req.query.search
+            let songs = await Songs.findAll({
+                where:{
+                    title:{
+                        [Op.iLike] : `%${search}%`
+                    }
+                }
+            })
             res.render('songs',{songs,time})
         } catch (error) {
             res.send(error)

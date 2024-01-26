@@ -15,6 +15,14 @@
     <%- include('./components/navbar') %>
     <div class="container"> 
         <div class="row">
+            <div col-6>
+                <form action="/sonus/songs">
+                    <input type="search" name="search" class="form-contorl">
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+        <div class="row">
         <% for(song of songs) {%>
                 <div class="col-3">
     
