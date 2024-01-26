@@ -35,9 +35,6 @@ router.get('/sonus/profile/playlist/edit',ControllerPlaylists.renderEdit)  //Dis
 router.post('/sonus/profile/playlist/edit',ControllerPlaylists.editPlaylist)  
 router.get('/sonus/profile/playlist/delete',ControllerPlaylists.deletePlaylist)
 
-router.get('/sonus/others') //Other users' profiles
-router.get('/sonus/others/:sonusId')    //View one spesific profile
-
 router.get('/sonus/playlists', ControllerPlaylists.renderPlaylists) //Browseplaylists
 
 router.get('/sonus/songs', ControllerSong.renderSong)    //Browse songs

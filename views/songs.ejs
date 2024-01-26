@@ -14,14 +14,17 @@
 <body data-bs-theme="dark" style="font-family: Italiana; margin: 0;" >
     <%- include('./components/navbar') %>
     <div class="container"> 
-        <div class="row">
-            <div col-6>
-                <form action="/sonus/songs">
-                    <input type="search" name="search" class="form-contorl">
-                    <input type="submit" class="btn btn-primary">
+        <form action="/sonus/songs">
+                <div class="row my-4">
+                    <div class="col-11">
+                        <input type="search" name="search" class="form-control" placeholder="Search a song...">
+                    </div>
+                    <div class="col-1">
+                        <input type="submit" class="btn btn-primary">
+                        
+                    </div>
+                </div>
                 </form>
-            </div>
-        </div>
         <div class="row">
         <% for(song of songs) {%>
                 <div class="col-3">

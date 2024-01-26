@@ -20,7 +20,8 @@ class ControllerLanding{
         try {
             let newUser = req.body
             await Users.create(newUser)
-            res.redirect('/sonus')
+            let msg = `Please login first.`
+            res.redirect(`/sonus/login?error=${msg}`)
         } catch (error) {
             if(error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError'){
                 let errorMsg = error.errors.map(el=>{

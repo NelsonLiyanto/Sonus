@@ -12,7 +12,7 @@ class ControllerProfile{
             })
             let playlist = await Playlists.findOne({
                 where:{
-                    ProfileId:id
+                    ProfileId:profile.id
                 },
                 include:{
                     model:PlaylistContents,
@@ -20,7 +20,7 @@ class ControllerProfile{
                 }
             })
             let emoji = Playlists.randomEmoji()
-            console.log(emoji);
+
             if(!profile) res.redirect('/sonus/profile/setup')
             res.render('profile',{profile,playlist,emoji})
         } catch (error) {

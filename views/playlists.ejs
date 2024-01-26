@@ -14,10 +14,8 @@
 <body data-bs-theme="dark" style="font-family: Italiana; margin: 0;" >
     <%- include('./components/navbar') %>
     <div class="container"> 
-  
-
         <% for(playlist of playlists) {%>
-            <div class="row">
+            <div class="row border p-4 my-4">
                 <div class="col-2">
                     <img src="<%= playlist.coverUrl %>" class="img-fluid" alt="" style="height: 200x; width: 200px;">
                     <div><strong>Playlist Name:</strong></div>
